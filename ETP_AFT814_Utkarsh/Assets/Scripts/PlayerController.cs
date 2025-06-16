@@ -12,5 +12,18 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
-    private bool isGround;
+    private bool isGrounded;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        float moveInput = Input.GetAxisRaw("Horizontal");
+
+        // Move left/right
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.angularVelocity.y);
+    }
 }
